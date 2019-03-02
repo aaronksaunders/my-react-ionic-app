@@ -58,12 +58,12 @@ class CartPage extends Component {
             <IonTitle>CART PAGE</IonTitle>
             <IonButtons slot="end">
               <IonButton href="/" onClick={e => this.goToLink(e)}>
-                GOTO CART
+                GO BACK
               </IonButton>
             </IonButtons>
           </IonToolbar>
         </IonHeader>
-        <IonContent>
+        <IonContent padding>
           <IonLabel>Cart Total {formatter.format(store.cartTotal)}</IonLabel>
           <IonList>
             {store.cartItems.map((item, index) => (

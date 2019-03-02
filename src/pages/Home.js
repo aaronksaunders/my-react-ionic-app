@@ -4,25 +4,19 @@ import {
   withRouter,
   Redirect,
   Route,
-  Switch
 } from "react-router-dom";
 
 import {
-  IonApp,
   IonButtons,
-  IonMenuButton,
-  IonAlert,
   IonPage,
   IonContent,
   IonHeader,
   IonToolbar,
   IonButton,
-  IonList,
-  IonItem
 } from "@ionic/react";
 
 // MOBX
-import { inject } from "mobx-react";
+import { inject , observer } from "mobx-react";
 import DevTools from "mobx-react-devtools";
 import TabContainer from "../components/TabContainer";
 import CartPage from "./Cart";
@@ -52,7 +46,7 @@ class Home extends Component {
           <IonToolbar color="primary">
             <IonButtons slot="end">
               <IonButton href="/cart/" onClick={this.goToLink}>
-                GOTO CART
+                GOTO CART ( {this.props.store.cartSize} )
               </IonButton>
             </IonButtons>
           </IonToolbar>
@@ -67,4 +61,4 @@ class Home extends Component {
   }
 }
 
-export default withRouter(inject("store")(Home));
+export default withRouter(inject("store")(observer(Home)));

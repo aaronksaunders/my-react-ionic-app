@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { IonList, IonItem } from "@ionic/react";
+import { IonList, IonItem, IonContent } from "@ionic/react";
 // MOBX
 import { inject } from "mobx-react";
 
@@ -20,8 +20,10 @@ class ShoesPage extends Component {
     let { store } = this.props;
     store.showProduct("SHOES");
     return (
-      <div>
-        <h1>SHOES</h1>
+      <IonContent padding>
+        <IonItem>
+          <h1>Available Shoes</h1>
+        </IonItem>
         <IonList>
           {store.filteredProducts.map(item => (
             <IonItem
@@ -38,7 +40,7 @@ class ShoesPage extends Component {
             </IonItem>
           ))}
         </IonList>
-      </div>
+      </IonContent>
     );
   }
 }
