@@ -1,17 +1,10 @@
 import React, { Component } from "react";
 import {
-  BrowserRouter as Router,
   withRouter,
-  Redirect,
-  Route,
-  Switch
 } from "react-router-dom";
 
 import {
-  IonApp,
   IonButtons,
-  IonMenuButton,
-  IonAlert,
   IonPage,
   IonContent,
   IonHeader,
@@ -71,6 +64,7 @@ class CartPage extends Component {
                 button={true}
                 onClick={() => store.removeItemFromCart(index)}
                 key={item.id + ":" + index}
+                detail={false}
               >
                 <div style={{ flex: 1 }}>
                   {item.id} {item.name}

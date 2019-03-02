@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { IonApp, IonSplitPane, IonPage } from '@ionic/react';
 import '@ionic/core/css/core.css';
 import '@ionic/core/css/ionic.bundle.css';
 

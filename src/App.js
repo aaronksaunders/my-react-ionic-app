@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { render } from "react-dom";
 import Home from "./pages/Home";
 
 import { Store } from "./store";
 
-import { Provider, inject } from "mobx-react";
+import { Provider } from "mobx-react";
 import { IonApp } from "@ionic/react";
 import CartPage from "./pages/Cart";
 const store = new Store();

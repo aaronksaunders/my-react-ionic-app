@@ -1,25 +1,19 @@
 import React, { Component } from "react";
 import {
-  BrowserRouter as Router,
   withRouter,
   Redirect,
-  Route,
+  Route
 } from "react-router-dom";
 
 import {
-  IonButtons,
   IonPage,
   IonContent,
-  IonHeader,
-  IonToolbar,
-  IonButton,
 } from "@ionic/react";
 
 // MOBX
-import { inject , observer } from "mobx-react";
-import DevTools from "mobx-react-devtools";
+import { inject, observer } from "mobx-react";
 import TabContainer from "../components/TabContainer";
-import CartPage from "./Cart";
+import CatalogHeader from "../components/CatalogHeader";
 
 class Home extends Component {
   constructor(props) {
@@ -29,33 +23,28 @@ class Home extends Component {
     };
   }
 
-  goToLink = (e) => {
+  /**
+   * used to navigate to a different route in the application
+   */
+  goToLink = e => {
     if (!e.currentTarget) {
       return;
     }
     e.preventDefault();
-    debugger;
     this.props.history.push(e.currentTarget.href);
-  }
+  };
 
   render() {
-    let { value } = this.state;
     return (
       <IonPage>
-        <IonHeader>
-          <IonToolbar color="primary">
-            <IonButtons slot="end">
-              <IonButton href="/cart/" onClick={this.goToLink}>
-                GOTO CART ( {this.props.store.cartSize} )
-              </IonButton>
-            </IonButtons>
-          </IonToolbar>
-        </IonHeader>
+        {/* created a seperate component for the header */}
+        <CatalogHeader
+          _onClick={this.goToLink}
+        />
         <Route exact path="/" render={() => <Redirect to="/socks" />} />
         <IonContent>
           <TabContainer />
         </IonContent>
-        <DevTools />
       </IonPage>
     );
   }
