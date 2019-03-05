@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import {
-  withRouter,
-} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import {
   IonButtons,
@@ -11,7 +9,6 @@ import {
   IonToolbar,
   IonButton,
   IonList,
-  IonItem,
   IonTitle,
   IonLabel
 } from "@ionic/react";
@@ -19,6 +16,8 @@ import {
 // MOBX
 import { inject, observer } from "mobx-react";
 import DevTools from "mobx-react-devtools";
+import CartDeleteAlert from "../components/CartDeleteAlert";
+import { CartListItem } from "../components/CartListItem";
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -30,7 +29,7 @@ class CartPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 0
+      currentItem: 0
     };
   }
 
@@ -44,6 +43,8 @@ class CartPage extends Component {
 
   render() {
     let { store } = this.props;
+    let { showAlert, currentItem } = this.state;
+
     return (
       <IonPage>
         <IonHeader>
@@ -57,22 +58,24 @@ class CartPage extends Component {
           </IonToolbar>
         </IonHeader>
         <IonContent padding>
+          <CartDeleteAlert
+            showAlert={showAlert}
+            confirmationAction={() => {
+              store.removeItemFromCart(currentItem);
+              this.setState({ showAlert: false });
+            }}
+            cancelAction={() => this.setState({ showAlert: false })}
+          />
           <IonLabel>Cart Total {formatter.format(store.cartTotal)}</IonLabel>
           <IonList>
             {store.cartItems.map((item, index) => (
-              <IonItem
-                button={true}
-                onClick={() => store.removeItemFromCart(index)}
+              <CartListItem
                 key={item.id + ":" + index}
-                detail={false}
-              >
-                <div style={{ flex: 1 }}>
-                  {item.id} {item.name}
-                </div>
-                <div style={{ flex: 0.5, textAlign: "right" }}>
-                  {formatter.format(item.price)}
-                </div>
-              </IonItem>
+                item={item}
+                _onClick={() =>
+                  this.setState({ showAlert: true, currentItem: index })
+                }
+              />
             ))}
           </IonList>
         </IonContent>
