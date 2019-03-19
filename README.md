@@ -8,3 +8,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - React Router
 - Mobx
 
+#### See IonMenu/SideMenu Example Here
+https://github.com/aaronksaunders/ionic-react-drawer
