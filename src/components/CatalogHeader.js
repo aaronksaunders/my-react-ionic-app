@@ -1,15 +1,16 @@
 import React from "react";
-// MOBX
-import { inject, observer } from "mobx-react";
+// OVERMINDJS
+import { useApp } from "../store";
 import { IonHeader, IonToolbar, IonButtons, IonButton } from "@ionic/react";
 
-const CatalogHeader = ({ _onClick, store : { cartSize } }) => {
+const CatalogHeader = ({ _onClick  }) => {
+  const { state } = useApp();
   return (
     <IonHeader>
       <IonToolbar color="primary">
         <IonButtons slot="end">
           <IonButton onClick={_onClick}>
-            CART ( {cartSize} )
+            CART ( {state.cartSize} )
           </IonButton>
         </IonButtons>
       </IonToolbar>
@@ -17,4 +18,4 @@ const CatalogHeader = ({ _onClick, store : { cartSize } }) => {
   );
 };
 
-export default inject("store")(observer(CatalogHeader));
+export default CatalogHeader;

@@ -7,8 +7,7 @@ import {
   IonLabel,
   IonRouterOutlet
 } from "@ionic/react";
-import ShoesPage from "../pages/Shoes";
-import SocksPage from "../pages/Socks";
+import Products from "../pages/Products";
 
 //
 // value is used to let us know what view to render
@@ -19,8 +18,16 @@ const TabContainer = () => {
     <IonTabs>
       {/* Set the routes for the tab pages using this outlet*/}
       <IonRouterOutlet>
-        <Route path="/tabs/shoes" component={ShoesPage} exact={true} />
-        <Route path="/tabs/socks" component={SocksPage} exact={true} />
+        <Route
+          path="/tabs/shoes"
+          render={props => <Products {...props} showProduct="SHOES" />}
+          exact={true}
+        />
+        <Route
+          path="/tabs/socks"
+          render={props => <Products {...props} showProduct="SOCKS" />}
+          exact={true}
+        />
         <Route
           path="/"
           render={() => <Redirect to="/tabs/shoes" />}

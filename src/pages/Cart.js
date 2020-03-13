@@ -12,9 +12,9 @@ import {
   IonLabel,
 } from "@ionic/react";
 
-// MOBX
-import { inject, observer } from "mobx-react";
-// import DevTools from "mobx-react-devtools";
+// OVERMINDJS
+import { useApp } from "../store";
+
 import CartDeleteAlert from "../components/CartDeleteAlert";
 import { CartListItem } from "../components/CartListItem";
 
@@ -25,6 +25,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 });
 
 const CartPage = ({ history, store }) => {
+  const { state, actions } = useApp();
   const [currentItem, setCurrentItem] = useState(0);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -45,14 +46,14 @@ const CartPage = ({ history, store }) => {
         <CartDeleteAlert
           showAlert={showAlert}
           confirmationAction={() => {
-            store.removeItemFromCart(currentItem);
+            actions.removeItemFromCart(currentItem);
             setShowAlert(false);
           }}
           cancelAction={() => setShowAlert(false)}
         />
-        <IonLabel>Cart Total {formatter.format(store.cartTotal)}</IonLabel>
+        <IonLabel>Cart Total {formatter.format(state.cartTotal)}</IonLabel>
         <IonList>
-          {store.cartItems.map((item, index) => (
+          {state.cartItems.map((item, index) => (
             <CartListItem
               key={item.id + ":" + index}
               item={item}
@@ -69,4 +70,4 @@ const CartPage = ({ history, store }) => {
   );
 };
 
-export default inject("store")(observer(CartPage));
+export default CartPage;

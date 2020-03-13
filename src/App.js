@@ -3,8 +3,6 @@ import { Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 
-import { Store } from "./store";
-import { Provider } from "mobx-react";
 import CartPage from "./pages/Cart";
 import TabContainer from "./components/TabContainer";
 
@@ -27,11 +25,18 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 
-const store = new Store();
+import { createOvermind } from "overmind";
+import { Provider } from "overmind-react";
+import { config } from "./store";
+
+
+export const overmind = createOvermind(config, {
+  devtools: true
+});
 
 const App = () => {
   return (
-    <Provider store={store}>
+    <Provider value={overmind}>
       <IonApp>
         <IonReactRouter>
           <IonRouterOutlet>

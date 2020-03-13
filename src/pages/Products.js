@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IonList, IonItem, IonContent, IonPage } from "@ionic/react";
 import { CatalogListItem } from "../components/CatalogListItem";
 import CatalogHeader from "../components/CatalogHeader";
-// MOBX
-import { inject } from "mobx-react";
-const SocksPage = ({ history, store }) => {
-  store.showProduct("SHOES");
+// OVERMINDJS
+import { useApp } from "../store";
+
+const Products = ({ history, store, showProduct }) => {
+  const { state, actions } = useApp();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    actions.showProduct(showProduct);
+    setProducts(state.filteredProducts);
+  }, [actions, showProduct]);
+
   return (
     <IonPage>
       {/* created a seperate component for the header */}
@@ -15,11 +23,11 @@ const SocksPage = ({ history, store }) => {
           <h1>Available Shoes</h1>
         </IonItem>
         <IonList>
-          {store.filteredProducts.map(item => (
+          {products.map(item => (
             <CatalogListItem
               key={item.id}
               item={item}
-              _onClick={() => store.addItemToCart(item)}
+              _onClick={() => actions.addItemToCart(item)}
             />
           ))}
         </IonList>
@@ -28,4 +36,4 @@ const SocksPage = ({ history, store }) => {
   );
 };
 
-export default inject("store")(SocksPage);
+export default Products;
