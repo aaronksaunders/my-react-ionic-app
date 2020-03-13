@@ -8,7 +8,7 @@ const CatalogHeader = ({ _onClick, store : { cartSize } }) => {
     <IonHeader>
       <IonToolbar color="primary">
         <IonButtons slot="end">
-          <IonButton href="/cart/" onClick={_onClick}>
+          <IonButton onClick={_onClick}>
             CART ( {cartSize} )
           </IonButton>
         </IonButtons>

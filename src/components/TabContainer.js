@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import {
   IonTabs,
   IonTabBar,
@@ -19,16 +19,21 @@ const TabContainer = () => {
     <IonTabs>
       {/* Set the routes for the tab pages using this outlet*/}
       <IonRouterOutlet>
-        <Route path="/:tab(shoes)" component={ShoesPage} exact={true} />
-        <Route path="/:tab(socks)" component={SocksPage} exact={true} />
+        <Route path="/tabs/shoes" component={ShoesPage} exact={true} />
+        <Route path="/tabs/socks" component={SocksPage} exact={true} />
+        <Route
+          path="/"
+          render={() => <Redirect to="/tabs/shoes" />}
+          exact={true}
+        />
       </IonRouterOutlet>
 
       {/* Set the UI for the tabs, specify bottom of page */}
       <IonTabBar slot="bottom">
-        <IonTabButton tab="shoes" href="/shoes">
+        <IonTabButton tab="shoes" href="/tabs/shoes">
           <IonLabel>Shoes</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="socks" href="/socks">
+        <IonTabButton tab="socks" href="/tabs/socks">
           <IonLabel>Socks</IonLabel>
         </IonTabButton>
       </IonTabBar>

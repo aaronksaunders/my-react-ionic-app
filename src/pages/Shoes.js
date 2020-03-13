@@ -1,20 +1,15 @@
-import React, { Component } from "react";
-import { IonList, IonItem, IonContent } from "@ionic/react";
+import React from "react";
+import { IonList, IonItem, IonContent, IonPage } from "@ionic/react";
 import { CatalogListItem } from "../components/CatalogListItem";
+import CatalogHeader from "../components/CatalogHeader";
 // MOBX
 import { inject } from "mobx-react";
-
-
-class ShoesPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    let { store } = this.props;
-    store.showProduct("SHOES");
-    return (
+const SocksPage = ({ history, store }) => {
+  store.showProduct("SHOES");
+  return (
+    <IonPage>
+      {/* created a seperate component for the header */}
+      <CatalogHeader _onClick={() => history.push("/cart")} />
       <IonContent padding>
         <IonItem>
           <h1>Available Shoes</h1>
@@ -29,8 +24,8 @@ class ShoesPage extends Component {
           ))}
         </IonList>
       </IonContent>
-    );
-  }
-}
+    </IonPage>
+  );
+};
 
-export default inject("store")(ShoesPage);
+export default inject("store")(SocksPage);
