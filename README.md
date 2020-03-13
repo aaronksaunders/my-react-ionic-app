@@ -1,4 +1,4 @@
-Ionic v5 React Mobx Tab App 
+Ionic v5 React Overmindjs Tab App 
 -
 This project was last updated March 12, 2020
 
@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - create react app
 - Ionic Tabs
 - React Router
-- Mobx
+- Overmindjs - https://overmindjs.org/
 
 #### See IonMenu/SideMenu Example Here
 https://github.com/aaronksaunders/ionic-react-drawer
