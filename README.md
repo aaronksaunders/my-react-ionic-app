@@ -12,3 +12,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 #### See IonMenu/SideMenu Example Here
 https://github.com/aaronksaunders/ionic-react-drawer
+
+### See OvermindJS Implementation
+https://github.com/aaronksaunders/my-react-ionic-app/tree/overmindjs
