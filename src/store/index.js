@@ -46,6 +46,13 @@ const initalProds = new Map([
       name: "zip up ankle boot",
       price: 89.99
     }
+  ],
+  [
+    "40-SHOES",
+    {
+      name: "Flip Flops For Beach",
+      price: 9.99
+    }
   ]
 ]);
 
